@@ -1,11 +1,7 @@
-
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { Container, Paper } from '@mui/material';
-import Button from '@mui/material/Button';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 
 export default function EditStudent() {
     const location = useLocation();
@@ -20,55 +16,67 @@ export default function EditStudent() {
         return <div>No student data found.</div>;
     }
 
-    const handleClick=(e)=> {
-        const student={studentId, studentFirstName, studentLastName, studentAddress, studentSchoolName}
+    const handleClick = (e) => {
+        const student = { studentId, studentFirstName, studentLastName, studentAddress, studentSchoolName }
         console.log(student)
 
         fetch("https://student-system-backend-12e73bdc6641.herokuapp.com/student/update", {
-            method:"PUT",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(student)
-        }).then(()=>{
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(student)
+        }).then(() => {
             console.log("Student updated")
         })
     }
-    
+
 
     return (
-        <Container style={{marginTop:'30px'}}>
-            <Paper elevation={3} >
-                <h2 style={{ color: "Black", decoration:"none", margin:'20px' }}>EDIT STUDENT</h2>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '25ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
+        <div className='' style={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
+            <div className="">
+                <h2 style={{ color: "Black", decoration: "none", margin: '20px' }}>EDIT STUDENT</h2>
+                <form >
+                    <div class="form-group">
+                        <label>First name:</label>
+                        <input id="outlined-basic" label="First name" className="form-control mx-sm-3" fullWidth value={studentFirstName}
+                            onChange={(e) => setStudentFirstName(e.target.value)} style={{ width: '350px' }}
+                            placeholder="Firstname" />
+                    </div>
 
-                    <TextField id="outlined-basic" label="First name" variant="outlined" fullWidth value={studentFirstName}
-                        onChange={(e) => setStudentFirstName(e.target.value)} style={{width:'250px'}}/>
+                    <div class="form-group">
+                        <label>Last name:</label>
+                        <input id="outlined-basic" label="Last name" variant="outlined" fullWidth value={studentLastName}
+                            onChange={(e) => setStudentLastName(e.target.value)} style={{ width: '350px' }} className="form-control mx-sm-3"
+                            placeholder="Lastname" />
+                    </div>
 
-                    <TextField id="outlined-basic" label="Last name" variant="outlined" fullWidth value={studentLastName}
-                        onChange={(e) => setStudentLastName(e.target.value)} style={{width:'250px'}}/><br></br>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input id="outlined-basic" label="Address" fullWidth value={studentAddress}
+                            onChange={(e) => setStudentAddress(e.target.value)} style={{ width: '350px' }} className="form-control mx-sm-3"
+                            placeholder="Address" />
+                    </div>
+                    <label>School name:</label>
+                    <div class="form-group" style={{}}>
 
-                    <TextField id="outlined-basic" label="Address" variant="outlined" fullWidth value={studentAddress}
-                        onChange={(e) => setStudentAddress(e.target.value)} style={{width:'250px'}}/>
-
-                    <TextField id="outlined-basic" label="School name" variant="outlined" fullWidth value={studentSchoolName}
-                        onChange={(e) => setStudentSchoolName(e.target.value)} style={{width:'250px'}}/><br></br>
-
-                    <Link to="/"><Button variant="contained" onClick={handleClick} style={{width:'100px', marginTop:'10px'}} className='btn btn-primary'>UPDATE</Button></Link>
-                    <br></br>
-                    <br></br>
-                </Box>
-
-            </Paper>
-
-                    
+                        <input id="outlined-basic" label="School name" variant="outlined" fullWidth value={studentSchoolName}
+                            onChange={(e) => setStudentSchoolName(e.target.value)} style={{ width: '350px' }} className="form-control mx-sm-3"
+                            placeholder="School name" />
+                    </div>
 
 
-        </Container>
+
+
+                    <Link to="/"><button variant="contained" onClick={handleClick} style={{ width: '100px', marginTop: '10px' }} className='btn btn-primary'>UPDATE</button></Link>
+                </form>
+                <br></br>
+                <br></br>
+            </div>
+
+        </div>
+
+
+
+
+
     );
 }

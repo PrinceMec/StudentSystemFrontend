@@ -9,24 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Appbar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            STUDENT MANAGEMENT
-          </Typography>
-          
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <div>
+      <nav class="navbar" style={{backgroundColor:'#007bff'}}>
+        <a class="navbar-brand"  style={{color:'white'}}>STUDENT MANAGEMENT</a>
+      </nav>
+    </div>
+
   );
 }
