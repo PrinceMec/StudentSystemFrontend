@@ -1,4 +1,4 @@
-﻿# Student Management Frontend
+﻿# Student System Frontend
 
 Live here: https://studentmanagement-3aw4.onrender.com/
 
